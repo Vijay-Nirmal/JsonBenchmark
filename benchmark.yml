@@ -1,0 +1,49 @@
+name: Benchmark
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'JsonBenchmark/**'
+  workflow_dispatch:
+
+jobs:
+  benchmark:
+    name: Run Benchmark
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Build
+      run: dotnet build -c Release
+      
+    - name: Run benchmark
+      run: |
+        mkdir -p results
+        cd JsonBenchmark
+        dotnet run -c Release --no-build
+
+    - name: Move benchmark results
+      run: |
+        mkdir -p results
+        mv BenchmarkDotNet.Artifacts/results/* results/
+        
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: benchmark-results
+        path: results/
+
+    - name: Commit benchmark results
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add results/
+        git commit -m "Update benchmark results" || echo "No changes to commit"
+        git push || echo "No changes to push"

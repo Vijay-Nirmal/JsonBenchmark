@@ -5,6 +5,15 @@ VisualStudioVersion = 17.12.35521.163 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonBenchmark", "JsonBenchmark\JsonBenchmark.csproj", "{D6A8A2A9-EB7F-4B23-9448-0054E77B7A30}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1D032B5B-A07D-4849-A4F4-5DBAFBD208FB}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		benchmark.yml = benchmark.yml
+		LICENSE.txt = LICENSE.txt
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

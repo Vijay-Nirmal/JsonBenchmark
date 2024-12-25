@@ -6,6 +6,7 @@ using JsonBenchmark;
 
 var config = ManualConfig.Create(DefaultConfig.Instance)
                         .WithOptions(ConfigOptions.DisableOptimizationsValidator)
+                        .WithArtifactsPath("../BenchmarkDotNet.Artifacts")
                         .HideColumns("StdDev", "RatioSD")
                         .WithSummaryStyle(SummaryStyle.Default.WithMaxParameterColumnWidth(100)
                                                                 .WithRatioStyle(RatioStyle.Trend));
