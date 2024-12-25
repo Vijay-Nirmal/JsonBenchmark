@@ -149,3 +149,26 @@ This section contains the benchmark results for various JSON libraries that supp
 ## Chart
 
 ![JsonPath Benchmark](./results/JsonBenchmark.BenchmarkJsonPath-chart.png)
+
+## Summary
+
+Based on the benchmark results:
+
+1. **Overall Performance**
+   - Newtonsoft.Json consistently performs the best across most JsonPath queries
+   - JsonCons.JsonPath is generally the second-fastest, typically 1.5x-2.5x slower than Newtonsoft
+   - BlushingPenguin.JsonPath shows good performance, usually 2-3x slower than Newtonsoft
+   - Hyperbee.Json is typically 3-4x slower than Newtonsoft
+   - JsonPath.Net is the slowest, often 6-10x slower than Newtonsoft
+
+2. **Memory Allocation**
+   - Newtonsoft.Json has the lowest memory footprint
+   - JsonPath.Net allocates significantly more memory (often 6-60x more than Newtonsoft)
+   - Other libraries generally allocate 2-10x more memory than Newtonsoft
+
+3. **Feature Support**
+   - JsonPath.Net and JsonCons.JsonPath support more advanced features like functions (e.g., length())
+   - Newtonsoft.Json doesn't support some advanced filters (e.g., "in" operator)
+   - Hyperbee.Json has good support for array operations and filtering but doesn't support other advanced filters like regex and functions
+
+In my opinion, Newtonsoft.Json is the best fit for JsonPath support provided it supports all your JsonPath requirement
