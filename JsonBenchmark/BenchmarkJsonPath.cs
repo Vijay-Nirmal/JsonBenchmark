@@ -11,6 +11,7 @@ public class BenchmarkJsonPath
 {
     private string _jsonString;
     private JsonDocument _jsonDocument;
+    private System.Text.Json.Nodes.JsonNode _jsonNode;
     private JToken _newtonsoftJson;
     private readonly Consumer _consumer = new Consumer();
 
@@ -68,6 +69,7 @@ public class BenchmarkJsonPath
 
         _jsonDocument = JsonDocument.Parse(_jsonString);
         _newtonsoftJson = JToken.Parse(_jsonString);
+        _jsonNode = _jsonDocument.RootElement.AsNode();
     }
 
     [Benchmark(Baseline = true, Description = "Newtonsoft.Json")]
@@ -81,7 +83,7 @@ public class BenchmarkJsonPath
     public void Get_JsonPathNet()
     {
         var path = Json.Path.JsonPath.Parse(JsonPath);
-        var result = path.Evaluate(_jsonDocument.RootElement.AsNode());
+        var result = path.Evaluate(_jsonNode);
         result.Matches.Consume(_consumer);
     }
 
