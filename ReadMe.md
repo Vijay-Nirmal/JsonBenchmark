@@ -183,20 +183,23 @@ This section contains the benchmark results for various JSON libraries that supp
 Based on the benchmark results:
 
 1. **Overall Performance**
-   - Newtonsoft.Json consistently performs the best across most JsonPath queries
-   - JsonCons.JsonPath is generally the second-fastest, typically 1.5x-2.5x slower than Newtonsoft
-   - BlushingPenguin.JsonPath shows good performance, usually 2-3x slower than Newtonsoft
-   - Hyperbee.Json is typically 3-4x slower than Newtonsoft
-   - JsonPath.Net is the slowest, often 6-10x slower than Newtonsoft
+   - JsonCraft.JsonPath and Newtonsoft.Json are the top performers, often trading places for the fastest execution
+   - JsonCraft.JsonPath is faster in simpler queries and wildcard operations
+   - Newtonsoft.Json performs better in complex filter operations
+   - JsonCons.JsonPath is generally the third-fastest, typically 1.8x-2.5x slower than the leaders
+   - BlushingPenguin.JsonPath shows decent performance, usually 2-3x slower than the fastest
+   - Hyperbee.Json is typically 3-7x slower than the fastest but has best performance in some scenarios
+   - JsonPath.Net is consistently the slowest, often 6-13x slower than the fastest
 
 2. **Memory Allocation**
-   - Newtonsoft.Json has the lowest memory footprint
-   - JsonPath.Net allocates significantly more memory (often 6-60x more than Newtonsoft)
-   - Other libraries generally allocate 2-10x more memory than Newtonsoft
+   - JsonCraft.JsonPath and Newtonsoft.Json have the most efficient memory usage
+   - JsonCraft.JsonPath often uses less memory than Newtonsoft.Json for simple queries
+   - JsonPath.Net allocates significantly more memory (often 5-50x more than the most efficient)
+   - Other libraries generally allocate 2-5x more memory than the most efficient
 
 3. **Feature Support**
    - JsonPath.Net and JsonCons.JsonPath support more advanced features like functions (e.g., length())
-   - Newtonsoft.Json doesn't support some advanced filters (e.g., "in" operator)
+   - Newtonsoft.Json, BlushingPenguin.JsonPath and JsonCraft.JsonPath don't support some advanced filters (e.g., "in" operator)
    - Hyperbee.Json has good support for array operations and filtering but doesn't support other advanced filters like regex and functions
 
-In my opinion, Newtonsoft.Json is the best fit for JsonPath support provided it supports all your JsonPath requirement
+In my opinion, JsonCraft.JsonPath and Newtonsoft.Json is the best fit for JsonPath support provided it supports all your JsonPath requirement
