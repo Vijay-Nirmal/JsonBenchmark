@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>JsonBenchmark.BenchmarkJsonPath-20250115-172805</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.14.0, Windows 11 (10.0.26100.2605)
+13th Gen Intel Core i9-13900HX, 1 CPU, 32 logical and 24 physical cores
+.NET SDK 9.0.101
+  [Host]     : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX2
+  DefaultJob : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX2
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>Method                    </th><th>JsonPath                                        </th><th>Mean</th><th>Error</th><th>Ratio  </th><th>Gen0</th><th>Gen1</th><th>Allocated</th><th>Alloc Ratio</th>
+</tr>
+</thead><tbody><tr><td>Newtonsoft.Json</td><td>$..[&#39;bicycle&#39;,&#39;price&#39;]</td><td>719.6 ns</td><td>2.88 ns</td><td>baseline</td><td>0.0362</td><td>-</td><td>696 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$..[&#39;bicycle&#39;,&#39;price&#39;]</td><td>693.8 ns</td><td>2.46 ns</td><td>1.04x faster</td><td>0.0792</td><td>-</td><td>1504 B</td><td>2.16x more</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$..[&#39;bicycle&#39;,&#39;price&#39;]</td><td>6,390.9 ns</td><td>47.26 ns</td><td>8.88x slower</td><td>0.7172</td><td>-</td><td>13568 B</td><td>19.49x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$..[&#39;bicycle&#39;,&#39;price&#39;]</td><td>1,940.9 ns</td><td>13.76 ns</td><td>2.70x slower</td><td>0.1984</td><td>-</td><td>3736 B</td><td>5.37x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$..[&#39;bicycle&#39;,&#39;price&#39;]</td><td>3,183.2 ns</td><td>15.71 ns</td><td>4.42x slower</td><td>0.1183</td><td>-</td><td>2264 B</td><td>3.25x more</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$..[&#39;bicycle&#39;,&#39;price&#39;]</td><td>1,374.9 ns</td><td>5.34 ns</td><td>1.91x slower</td><td>0.2003</td><td>-</td><td>3784 B</td><td>5.44x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$..*</td><td>650.3 ns</td><td>1.70 ns</td><td>baseline</td><td>0.0162</td><td>-</td><td>320 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$..*</td><td>440.4 ns</td><td>1.83 ns</td><td>1.48x faster</td><td>0.0367</td><td>-</td><td>696 B</td><td>2.17x more</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$..*</td><td>9,065.7 ns</td><td>58.13 ns</td><td>13.94x slower</td><td>0.8545</td><td>-</td><td>16352 B</td><td>51.10x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$..*</td><td>1,894.2 ns</td><td>19.57 ns</td><td>2.91x slower</td><td>0.1755</td><td>-</td><td>3344 B</td><td>10.45x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$..*</td><td>4,896.8 ns</td><td>33.73 ns</td><td>7.53x slower</td><td>0.1984</td><td>-</td><td>3856 B</td><td>12.05x more</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$..*</td><td>1,299.5 ns</td><td>4.66 ns</td><td>2.00x slower</td><td>0.2232</td><td>-</td><td>4200 B</td><td>13.12x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$..author</td><td>569.1 ns</td><td>2.59 ns</td><td>baseline</td><td>0.0172</td><td>-</td><td>336 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$..author</td><td>526.7 ns</td><td>1.97 ns</td><td>1.08x faster</td><td>0.0362</td><td>-</td><td>696 B</td><td>2.07x more</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$..author</td><td>5,681.2 ns</td><td>30.80 ns</td><td>9.98x slower</td><td>0.6256</td><td>-</td><td>11784 B</td><td>35.07x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$..author</td><td>1,749.3 ns</td><td>11.24 ns</td><td>3.07x slower</td><td>0.1774</td><td>-</td><td>3360 B</td><td>10.00x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$..author</td><td>2,305.0 ns</td><td>9.05 ns</td><td>4.05x slower</td><td>0.1068</td><td>-</td><td>2056 B</td><td>6.12x more</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$..author</td><td>1,044.0 ns</td><td>8.09 ns</td><td>1.83x slower</td><td>0.1354</td><td>-</td><td>2560 B</td><td>7.62x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$..book[0,1]</td><td>649.7 ns</td><td>2.73 ns</td><td>baseline</td><td>0.0305</td><td>-</td><td>584 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$..book[0,1]</td><td>636.1 ns</td><td>1.80 ns</td><td>1.02x faster</td><td>0.0486</td><td>-</td><td>920 B</td><td>1.58x more</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$..book[0,1]</td><td>5,996.4 ns</td><td>48.13 ns</td><td>9.23x slower</td><td>0.6714</td><td>-</td><td>12776 B</td><td>21.88x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$..book[0,1]</td><td>1,887.8 ns</td><td>8.12 ns</td><td>2.91x slower</td><td>0.1907</td><td>-</td><td>3616 B</td><td>6.19x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$..book[0,1]</td><td>2,541.3 ns</td><td>14.47 ns</td><td>3.91x slower</td><td>0.1068</td><td>-</td><td>2056 B</td><td>3.52x more</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$..book[0,1]</td><td>1,372.0 ns</td><td>7.24 ns</td><td>2.11x slower</td><td>0.1678</td><td>-</td><td>3168 B</td><td>5.42x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store..price</td><td>576.1 ns</td><td>1.98 ns</td><td>baseline</td><td>0.0248</td><td>-</td><td>472 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store..price</td><td>603.2 ns</td><td>1.58 ns</td><td>1.05x slower</td><td>0.0505</td><td>-</td><td>952 B</td><td>2.02x more</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store..price</td><td>5,829.3 ns</td><td>14.98 ns</td><td>10.12x slower</td><td>0.6561</td><td>-</td><td>12360 B</td><td>26.19x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store..price</td><td>1,478.1 ns</td><td>7.10 ns</td><td>2.57x slower</td><td>0.1755</td><td>-</td><td>3320 B</td><td>7.03x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store..price</td><td>1,985.5 ns</td><td>16.44 ns</td><td>3.45x slower</td><td>0.0916</td><td>-</td><td>1792 B</td><td>3.80x more</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store..price</td><td>1,057.2 ns</td><td>6.78 ns</td><td>1.84x slower</td><td>0.1297</td><td>-</td><td>2472 B</td><td>5.24x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.*</td><td>170.5 ns</td><td>0.86 ns</td><td>baseline</td><td>0.0300</td><td>-</td><td>568 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.*</td><td>123.0 ns</td><td>0.43 ns</td><td>1.39x faster</td><td>0.0203</td><td>-</td><td>384 B</td><td>1.48x less</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.*</td><td>748.8 ns</td><td>3.75 ns</td><td>4.39x slower</td><td>0.1354</td><td>-</td><td>2552 B</td><td>4.49x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.*</td><td>153.0 ns</td><td>0.93 ns</td><td>1.11x faster</td><td>0.0272</td><td>-</td><td>512 B</td><td>1.11x less</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.*</td><td>763.1 ns</td><td>4.80 ns</td><td>4.47x slower</td><td>0.0763</td><td>-</td><td>1440 B</td><td>2.54x more</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.*</td><td>335.9 ns</td><td>2.42 ns</td><td>1.97x slower</td><td>0.0648</td><td>-</td><td>1224 B</td><td>2.15x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.bicycle.color</td><td>198.4 ns</td><td>0.55 ns</td><td>baseline</td><td>0.0334</td><td>-</td><td>632 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.bicycle.color</td><td>169.8 ns</td><td>1.02 ns</td><td>1.17x faster</td><td>0.0203</td><td>-</td><td>384 B</td><td>1.65x less</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.bicycle.color</td><td>1,031.2 ns</td><td>6.11 ns</td><td>5.20x slower</td><td>0.1678</td><td>-</td><td>3184 B</td><td>5.04x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.bicycle.color</td><td>224.1 ns</td><td>1.01 ns</td><td>1.13x slower</td><td>0.0365</td><td>-</td><td>688 B</td><td>1.09x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.bicycle.color</td><td>305.6 ns</td><td>0.93 ns</td><td>1.54x slower</td><td>0.0110</td><td>-</td><td>208 B</td><td>3.04x less</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.bicycle.color</td><td>372.3 ns</td><td>1.82 ns</td><td>1.88x slower</td><td>0.0625</td><td>-</td><td>1184 B</td><td>1.87x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.book[-1:]</td><td>205.9 ns</td><td>0.83 ns</td><td>baseline</td><td>0.0348</td><td>-</td><td>656 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.book[-1:]</td><td>188.3 ns</td><td>1.09 ns</td><td>1.09x faster</td><td>0.0250</td><td>-</td><td>472 B</td><td>1.39x less</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.book[-1:]</td><td>1,078.8 ns</td><td>8.79 ns</td><td>5.24x slower</td><td>0.1678</td><td>-</td><td>3184 B</td><td>4.85x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.book[-1:]</td><td>234.1 ns</td><td>1.48 ns</td><td>1.14x slower</td><td>0.0367</td><td>-</td><td>696 B</td><td>1.06x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.book[-1:]</td><td>737.4 ns</td><td>6.12 ns</td><td>3.58x slower</td><td>0.0648</td><td>-</td><td>1232 B</td><td>1.88x more</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.book[-1:]</td><td>512.6 ns</td><td>6.37 ns</td><td>2.49x slower</td><td>0.0782</td><td>-</td><td>1480 B</td><td>2.26x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.book[:2]</td><td>201.9 ns</td><td>1.21 ns</td><td>baseline</td><td>0.0343</td><td>-</td><td>648 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.book[:2]</td><td>186.6 ns</td><td>0.71 ns</td><td>1.08x faster</td><td>0.0250</td><td>-</td><td>472 B</td><td>1.37x less</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.book[:2]</td><td>1,306.3 ns</td><td>6.65 ns</td><td>6.47x slower</td><td>0.1850</td><td>-</td><td>3496 B</td><td>5.40x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.book[:2]</td><td>242.0 ns</td><td>1.21 ns</td><td>1.20x slower</td><td>0.0362</td><td>-</td><td>688 B</td><td>1.06x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.book[:2]</td><td>834.0 ns</td><td>2.21 ns</td><td>4.13x slower</td><td>0.0648</td><td>-</td><td>1232 B</td><td>1.90x more</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.book[:2]</td><td>524.2 ns</td><td>4.37 ns</td><td>2.60x slower</td><td>0.0792</td><td>-</td><td>1504 B</td><td>2.32x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.book[?(!@.isbn)]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.book[?(!@.isbn)]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.book[?(!@.isbn)]</td><td>2,074.5 ns</td><td>13.77 ns</td><td>?</td><td>0.3052</td><td>-</td><td>5752 B</td><td>?</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.book[?(!@.isbn)]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.book[?(!@.isbn)]</td><td>1,521.7 ns</td><td>3.76 ns</td><td>?</td><td>0.1125</td><td>-</td><td>2120 B</td><td>?</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.book[?(!@.isbn)]</td><td>933.0 ns</td><td>6.20 ns</td><td>?</td><td>0.1278</td><td>-</td><td>2408 B</td><td>?</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.book[?(@.author &amp;&amp; @.title)]</td><td>550.1 ns</td><td>1.71 ns</td><td>baseline</td><td>0.0925</td><td>-</td><td>1752 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.book[?(@.author &amp;&amp; @.title)]</td><td>489.7 ns</td><td>1.73 ns</td><td>1.12x faster</td><td>0.0572</td><td>-</td><td>1088 B</td><td>1.61x less</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.book[?(@.author &amp;&amp; @.title)]</td><td>3,127.1 ns</td><td>19.92 ns</td><td>5.68x slower</td><td>0.4730</td><td>-</td><td>8936 B</td><td>5.10x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.book[?(@.author &amp;&amp; @.title)]</td><td>616.4 ns</td><td>2.06 ns</td><td>1.12x slower</td><td>0.1001</td><td>-</td><td>1896 B</td><td>1.08x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.book[?(@.author &amp;&amp; @.title)]</td><td>2,122.6 ns</td><td>14.85 ns</td><td>3.86x slower</td><td>0.1488</td><td>-</td><td>2856 B</td><td>1.63x more</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.book[?(@.author &amp;&amp; @.title)]</td><td>1,331.9 ns</td><td>6.22 ns</td><td>2.42x slower</td><td>0.1564</td><td>-</td><td>2944 B</td><td>1.68x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.book[?(@.author =~ /.*Waugh/)]</td><td>769.9 ns</td><td>3.11 ns</td><td>baseline</td><td>0.0772</td><td>-</td><td>1456 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.book[?(@.author =~ /.*Waugh/)]</td><td>1,016.2 ns</td><td>4.47 ns</td><td>1.32x slower</td><td>0.0687</td><td>-</td><td>1296 B</td><td>1.12x less</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.book[?(@.author =~ /.*Waugh/)]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.book[?(@.author =~ /.*Waugh/)]</td><td>1,213.7 ns</td><td>5.96 ns</td><td>1.58x slower</td><td>0.1011</td><td>-</td><td>1912 B</td><td>1.31x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.book[?(@.author =~ /.*Waugh/)]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.book[?(@.author =~ /.*Waugh/)]</td><td>2,301.0 ns</td><td>15.56 ns</td><td>2.99x slower</td><td>0.2747</td><td>-</td><td>5224 B</td><td>3.59x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.book[?(@.category == &#39;fiction&#39;)]</td><td>478.6 ns</td><td>3.81 ns</td><td>baseline</td><td>0.0782</td><td>-</td><td>1480 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.book[?(@.category == &#39;fiction&#39;)]</td><td>629.1 ns</td><td>3.95 ns</td><td>1.31x slower</td><td>0.0601</td><td>-</td><td>1144 B</td><td>1.29x less</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.book[?(@.category == &#39;fiction&#39;)]</td><td>2,850.1 ns</td><td>15.65 ns</td><td>5.96x slower</td><td>0.3853</td><td>-</td><td>7256 B</td><td>4.90x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.book[?(@.category == &#39;fiction&#39;)]</td><td>951.6 ns</td><td>3.26 ns</td><td>1.99x slower</td><td>0.1125</td><td>-</td><td>2120 B</td><td>1.43x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.book[?(@.category == &#39;fiction&#39;)]</td><td>1,795.3 ns</td><td>13.01 ns</td><td>3.75x slower</td><td>0.1354</td><td>-</td><td>2584 B</td><td>1.75x more</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.book[?(@.category == &#39;fiction&#39;)]</td><td>1,157.9 ns</td><td>7.39 ns</td><td>2.42x slower</td><td>0.1354</td><td>-</td><td>2560 B</td><td>1.73x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.book[?(@.category in [&#39;fiction&#39;,&#39;reference&#39;])]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.book[?(@.category in [&#39;fiction&#39;,&#39;reference&#39;])]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.book[?(@.category in [&#39;fiction&#39;,&#39;reference&#39;])]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.book[?(@.category in [&#39;fiction&#39;,&#39;reference&#39;])]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.book[?(@.category in [&#39;fiction&#39;,&#39;reference&#39;])]</td><td>2,764.0 ns</td><td>11.92 ns</td><td>?</td><td>0.2174</td><td>-</td><td>4136 B</td><td>?</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.book[?(@.category in [&#39;fiction&#39;,&#39;reference&#39;])]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.book[?(@.price &lt; 10)].title</td><td>530.9 ns</td><td>2.87 ns</td><td>baseline</td><td>0.0858</td><td>-</td><td>1632 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.book[?(@.price &lt; 10)].title</td><td>815.8 ns</td><td>2.40 ns</td><td>1.54x slower</td><td>0.0601</td><td>-</td><td>1136 B</td><td>1.44x less</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.book[?(@.price &lt; 10)].title</td><td>3,198.0 ns</td><td>13.15 ns</td><td>6.02x slower</td><td>0.4234</td><td>0.0038</td><td>8040 B</td><td>4.93x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.book[?(@.price &lt; 10)].title</td><td>945.9 ns</td><td>2.11 ns</td><td>1.78x slower</td><td>0.1011</td><td>-</td><td>1912 B</td><td>1.17x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.book[?(@.price &lt; 10)].title</td><td>2,068.3 ns</td><td>7.92 ns</td><td>3.90x slower</td><td>0.1373</td><td>-</td><td>2592 B</td><td>1.59x more</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.book[?(@.price &lt; 10)].title</td><td>1,476.9 ns</td><td>6.11 ns</td><td>2.78x slower</td><td>0.1488</td><td>-</td><td>2824 B</td><td>1.73x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.book[?(@.price &gt; 10 &amp;&amp; @.price &lt; 20)]</td><td>686.8 ns</td><td>3.79 ns</td><td>baseline</td><td>0.1183</td><td>-</td><td>2232 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.book[?(@.price &gt; 10 &amp;&amp; @.price &lt; 20)]</td><td>1,101.2 ns</td><td>6.02 ns</td><td>1.60x slower</td><td>0.0801</td><td>-</td><td>1528 B</td><td>1.46x less</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.book[?(@.price &gt; 10 &amp;&amp; @.price &lt; 20)]</td><td>4,498.3 ns</td><td>18.98 ns</td><td>6.55x slower</td><td>0.5875</td><td>-</td><td>11056 B</td><td>4.95x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.book[?(@.price &gt; 10 &amp;&amp; @.price &lt; 20)]</td><td>1,361.7 ns</td><td>4.05 ns</td><td>1.98x slower</td><td>0.1411</td><td>-</td><td>2680 B</td><td>1.20x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.book[?(@.price &gt; 10 &amp;&amp; @.price &lt; 20)]</td><td>2,912.4 ns</td><td>19.29 ns</td><td>4.24x slower</td><td>0.1793</td><td>-</td><td>3384 B</td><td>1.52x more</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.book[?(@.price &gt; 10 &amp;&amp; @.price &lt; 20)]</td><td>2,270.3 ns</td><td>18.15 ns</td><td>3.31x slower</td><td>0.2022</td><td>-</td><td>3832 B</td><td>1.72x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.book[?(@.price in [8.95, 12.99])]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.book[?(@.price in [8.95, 12.99])]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.book[?(@.price in [8.95, 12.99])]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.book[?(@.price in [8.95, 12.99])]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.book[?(@.price in [8.95, 12.99])]</td><td>2,966.5 ns</td><td>19.18 ns</td><td>?</td><td>0.2060</td><td>-</td><td>3944 B</td><td>?</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.book[?(@.price in [8.95, 12.99])]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.book[?(length(@.author) &gt; 5)]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.book[?(length(@.author) &gt; 5)]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.book[?(length(@.author) &gt; 5)]</td><td>4,520.4 ns</td><td>36.18 ns</td><td>?</td><td>0.5035</td><td>-</td><td>9504 B</td><td>?</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.book[?(length(@.author) &gt; 5)]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.book[?(length(@.author) &gt; 5)]</td><td>NA</td><td>NA</td><td>?</td><td>NA</td><td>NA</td><td>NA</td><td>?</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.book[?(length(@.author) &gt; 5)]</td><td>2,120.2 ns</td><td>9.79 ns</td><td>?</td><td>0.2441</td><td>-</td><td>4600 B</td><td>?</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.book[*]</td><td>202.7 ns</td><td>0.76 ns</td><td>baseline</td><td>0.0334</td><td>-</td><td>632 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.book[*]</td><td>161.0 ns</td><td>1.20 ns</td><td>1.26x faster</td><td>0.0198</td><td>-</td><td>376 B</td><td>1.68x less</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.book[*]</td><td>1,339.3 ns</td><td>6.91 ns</td><td>6.61x slower</td><td>0.1831</td><td>-</td><td>3472 B</td><td>5.49x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.book[*]</td><td>217.3 ns</td><td>1.08 ns</td><td>1.07x slower</td><td>0.0343</td><td>-</td><td>648 B</td><td>1.03x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.book[*]</td><td>809.0 ns</td><td>1.68 ns</td><td>3.99x slower</td><td>0.0696</td><td>-</td><td>1320 B</td><td>2.09x more</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.book[*]</td><td>372.5 ns</td><td>1.30 ns</td><td>1.84x slower</td><td>0.0663</td><td>-</td><td>1248 B</td><td>1.97x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.book[*].author</td><td>292.7 ns</td><td>1.01 ns</td><td>baseline</td><td>0.0415</td><td>-</td><td>784 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.book[*].author</td><td>318.2 ns</td><td>1.49 ns</td><td>1.09x slower</td><td>0.0272</td><td>-</td><td>520 B</td><td>1.51x less</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.book[*].author</td><td>2,083.4 ns</td><td>16.37 ns</td><td>7.12x slower</td><td>0.2632</td><td>-</td><td>4992 B</td><td>6.37x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.book[*].author</td><td>331.1 ns</td><td>2.10 ns</td><td>1.13x slower</td><td>0.0429</td><td>-</td><td>816 B</td><td>1.04x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.book[*].author</td><td>1,218.1 ns</td><td>5.73 ns</td><td>4.16x slower</td><td>0.0801</td><td>-</td><td>1528 B</td><td>1.95x more</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.book[*].author</td><td>504.8 ns</td><td>1.85 ns</td><td>1.72x slower</td><td>0.0734</td><td>-</td><td>1384 B</td><td>1.77x more</td>
+</tr><tr><td>Newtonsoft.Json</td><td>$.store.book[0].title</td><td>253.8 ns</td><td>1.65 ns</td><td>baseline</td><td>0.0401</td><td>-</td><td>760 B</td><td></td>
+</tr><tr><td>JsonCraft.JsonPath</td><td>$.store.book[0].title</td><td>228.3 ns</td><td>1.11 ns</td><td>1.11x faster</td><td>0.0234</td><td>-</td><td>440 B</td><td>1.73x less</td>
+</tr><tr><td>&#39;JsonPath.Net (json-everything)&#39;</td><td>$.store.book[0].title</td><td>1,478.5 ns</td><td>15.78 ns</td><td>5.83x slower</td><td>0.2155</td><td>-</td><td>4088 B</td><td>5.38x more</td>
+</tr><tr><td>BlushingPenguin.JsonPath</td><td>$.store.book[0].title</td><td>302.0 ns</td><td>2.56 ns</td><td>1.19x slower</td><td>0.0439</td><td>-</td><td>832 B</td><td>1.09x more</td>
+</tr><tr><td>Hyperbee.Json</td><td>$.store.book[0].title</td><td>363.7 ns</td><td>2.01 ns</td><td>1.43x slower</td><td>0.0110</td><td>-</td><td>208 B</td><td>3.65x less</td>
+</tr><tr><td>JsonCons.JsonPath</td><td>$.store.book[0].title</td><td>472.4 ns</td><td>2.10 ns</td><td>1.86x slower</td><td>0.0668</td><td>-</td><td>1264 B</td><td>1.66x more</td>
+</tr></tbody></table>
+</body>
+</html>

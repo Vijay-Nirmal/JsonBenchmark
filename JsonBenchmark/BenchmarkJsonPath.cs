@@ -3,10 +3,12 @@ using BenchmarkDotNet.Engines;
 using Json.More;
 using Newtonsoft.Json.Linq;
 using System.Text.Json;
+using JsonCraft.JsonPath;
 
 namespace JsonBenchmark;
 
 [MemoryDiagnoser]
+//[ShortRunJob]
 public class BenchmarkJsonPath
 {
     private string _jsonString;
@@ -32,6 +34,7 @@ public class BenchmarkJsonPath
         "$.store.book[?(@.price in [8.95, 12.99])]",       // value in array match
         "$.store.book[?(@.category in ['fiction','reference'])]", // multiple value match
         "$..*",                                             // recursive descent all nodes
+        "$..['bicycle','price']",                            // recursive descent specfic node with name match 
         "$.store.book[?(@.author && @.title)]",            // existence check
         "$.store.book[?(!@.isbn)]",                        // non-existence check
         "$.store.*",                                       // wildcard child
@@ -76,6 +79,13 @@ public class BenchmarkJsonPath
     public void Get_NewtonsoftJson()
     {
         var result = _newtonsoftJson.SelectTokens(JsonPath);
+        result.Consume(_consumer);
+    }
+
+    [Benchmark(Description = "JsonCraft.JsonPath")]
+    public void Get_JsonCraftJsonPath()
+    {
+        var result = _jsonDocument.SelectElements(JsonPath);
         result.Consume(_consumer);
     }
 

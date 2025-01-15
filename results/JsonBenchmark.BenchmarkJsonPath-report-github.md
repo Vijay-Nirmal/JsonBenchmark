@@ -1,30 +1,13 @@
-# Json Benchmark
+```
 
-This repository contains the benchmark results for various JSON libraries in .NET.
+BenchmarkDotNet v0.14.0, Windows 11 (10.0.26100.2605)
+13th Gen Intel Core i9-13900HX, 1 CPU, 32 logical and 24 physical cores
+.NET SDK 9.0.101
+  [Host]     : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX2
+  DefaultJob : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX2
 
-## Benchmark Configuration
 
-- **Hardware**: 13th Gen Intel(R) Core(TM) i9-13900HX (32 CPUs), ~2.2GHz
-- **OS**: Windows 11 Pro
-- **BenchmarkDotNet**: v0.14.0
-- **Platform**: X64
-- **Runtime**: .NET 9.0
-
-## JsonPath Benchmark
-
-This section contains the benchmark results for various JSON libraries that support JsonPath.
-
-### Libraries
-
-- [Newtonsoft.Json v13.0.3](https://www.nuget.org/packages/Newtonsoft.Json/13.0.3)
-- [JsonCraft.JsonPath v1.0.0](https://www.nuget.org/packages/JsonCraft.JsonPath)
-- [JsonPath.Net (json-everything) v2.0.0](https://www.nuget.org/packages/JsonPath.Net)
-- [BlushingPenguin.JsonPath v1.0.6](https://www.nuget.org/packages/BlushingPenguin.JsonPath/1.0.6)
-- [Hyperbee.Json v3.0.1](https://www.nuget.org/packages/Hyperbee.Json/3.0.1)
-- [JsonCons.JsonPath v1.1.0](https://www.nuget.org/packages/JsonCons.JsonPath/1.1.0)
-
-### Result
-
+```
 | Method                           | JsonPath                                                   |         Mean |       Error |         Ratio |       Gen0 |   Gen1 |  Allocated | Alloc Ratio |
 | -------------------------------- | ---------------------------------------------------------- | -----------: | ----------: | ------------: | ---------: | -----: | ---------: | ----------: |
 | **Newtonsoft.Json**              | **$..['bicycle','price']**                                 | **719.6 ns** | **2.88 ns** |  **baseline** | **0.0362** |  **-** |  **696 B** |        **** |
@@ -174,29 +157,23 @@ This section contains the benchmark results for various JSON libraries that supp
 | Hyperbee.Json                    | $.store.book[0].title                                      |     363.7 ns |     2.01 ns |  1.43x slower |     0.0110 |      - |      208 B |  3.65x less |
 | JsonCons.JsonPath                | $.store.book[0].title                                      |     472.4 ns |     2.10 ns |  1.86x slower |     0.0668 |      - |     1264 B |  1.66x more |
 
-## Chart
-
-![JsonPath Benchmark](./results/JsonBenchmark.BenchmarkJsonPath-chart.png)
-
-## Summary
-
-Based on the benchmark results:
-
-1. **Overall Performance**
-   - Newtonsoft.Json consistently performs the best across most JsonPath queries
-   - JsonCons.JsonPath is generally the second-fastest, typically 1.5x-2.5x slower than Newtonsoft
-   - BlushingPenguin.JsonPath shows good performance, usually 2-3x slower than Newtonsoft
-   - Hyperbee.Json is typically 3-4x slower than Newtonsoft
-   - JsonPath.Net is the slowest, often 6-10x slower than Newtonsoft
-
-2. **Memory Allocation**
-   - Newtonsoft.Json has the lowest memory footprint
-   - JsonPath.Net allocates significantly more memory (often 6-60x more than Newtonsoft)
-   - Other libraries generally allocate 2-10x more memory than Newtonsoft
-
-3. **Feature Support**
-   - JsonPath.Net and JsonCons.JsonPath support more advanced features like functions (e.g., length())
-   - Newtonsoft.Json doesn't support some advanced filters (e.g., "in" operator)
-   - Hyperbee.Json has good support for array operations and filtering but doesn't support other advanced filters like regex and functions
-
-In my opinion, Newtonsoft.Json is the best fit for JsonPath support provided it supports all your JsonPath requirement
+Benchmarks with issues:
+  BenchmarkJsonPath.Newtonsoft.Json: DefaultJob [JsonPath=$.store.book[?(!@.isbn)]]
+  BenchmarkJsonPath.JsonCraft.JsonPath: DefaultJob [JsonPath=$.store.book[?(!@.isbn)]]
+  BenchmarkJsonPath.BlushingPenguin.JsonPath: DefaultJob [JsonPath=$.store.book[?(!@.isbn)]]
+  BenchmarkJsonPath.'JsonPath.Net (json-everything)': DefaultJob [JsonPath=$.store.book[?(@.author =~ /.*Waugh/)]]
+  BenchmarkJsonPath.Hyperbee.Json: DefaultJob [JsonPath=$.store.book[?(@.author =~ /.*Waugh/)]]
+  BenchmarkJsonPath.Newtonsoft.Json: DefaultJob [JsonPath=$.store.book[?(@.category in ['fiction','reference'])]]
+  BenchmarkJsonPath.JsonCraft.JsonPath: DefaultJob [JsonPath=$.store.book[?(@.category in ['fiction','reference'])]]
+  BenchmarkJsonPath.'JsonPath.Net (json-everything)': DefaultJob [JsonPath=$.store.book[?(@.category in ['fiction','reference'])]]
+  BenchmarkJsonPath.BlushingPenguin.JsonPath: DefaultJob [JsonPath=$.store.book[?(@.category in ['fiction','reference'])]]
+  BenchmarkJsonPath.JsonCons.JsonPath: DefaultJob [JsonPath=$.store.book[?(@.category in ['fiction','reference'])]]
+  BenchmarkJsonPath.Newtonsoft.Json: DefaultJob [JsonPath=$.store.book[?(@.price in [8.95, 12.99])]]
+  BenchmarkJsonPath.JsonCraft.JsonPath: DefaultJob [JsonPath=$.store.book[?(@.price in [8.95, 12.99])]]
+  BenchmarkJsonPath.'JsonPath.Net (json-everything)': DefaultJob [JsonPath=$.store.book[?(@.price in [8.95, 12.99])]]
+  BenchmarkJsonPath.BlushingPenguin.JsonPath: DefaultJob [JsonPath=$.store.book[?(@.price in [8.95, 12.99])]]
+  BenchmarkJsonPath.JsonCons.JsonPath: DefaultJob [JsonPath=$.store.book[?(@.price in [8.95, 12.99])]]
+  BenchmarkJsonPath.Newtonsoft.Json: DefaultJob [JsonPath=$.store.book[?(length(@.author) > 5)]]
+  BenchmarkJsonPath.JsonCraft.JsonPath: DefaultJob [JsonPath=$.store.book[?(length(@.author) > 5)]]
+  BenchmarkJsonPath.BlushingPenguin.JsonPath: DefaultJob [JsonPath=$.store.book[?(length(@.author) > 5)]]
+  BenchmarkJsonPath.Hyperbee.Json: DefaultJob [JsonPath=$.store.book[?(length(@.author) > 5)]]
